@@ -2,11 +2,11 @@
 @use '../../styles/partials/typography.scss' as *;
 
 .header {
-    width: 18rem;
+    min-width: 18rem;
     background-color: aliceblue;
-    height: 100vh;
     padding: 2.5rem;
     display: flex;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     .logo {

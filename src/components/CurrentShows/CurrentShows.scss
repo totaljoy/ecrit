@@ -1,0 +1,46 @@
+@use '../../styles/partials/global.scss' as *;
+@use '../../styles/partials/typography.scss' as *;
+
+.home {
+    padding: 2rem 3rem;
+
+    .current-shows__title {
+        font-family: 'Space Mono';
+        padding-bottom: 1rem;
+    }
+
+    .current-shows {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .exhibition {
+            display: flex;
+            flex-direction: column;
+            width: 25rem;
+            border: 1px solid red;
+            background-color: #FCFFD3;
+            margin: .5rem 0;
+            margin-right: 5rem;
+            &-info {
+                padding: 1rem;
+                &__title {
+                    font-family: 'Space Mono';
+                    font-weight: 600;
+                    font-style: italic;
+                    letter-spacing: -.1ch;
+                    font-size: 1rem;
+                }
+                &__artist {
+                    font-family: 'Space Mono';
+                    font-weight: 400;
+                    font-style: normal;
+                }
+
+                &__place {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
