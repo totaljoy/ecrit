@@ -23,13 +23,15 @@ const CurrentShows = () => {
             </header>
             <section className="current-shows">
                 {
-                    shows.map((show) => {
+                    Object.keys(shows).map((showId) => {
+                        const exhibition = shows[showId]
+                        console.log(exhibition)
                         return (
-                            <article className="exhibition">
-                                <img className='exhibition__image' src={`${API_URL}/public/images/${show.show_image}`} />
+                            <article className="exhibition" key={exhibition.show_id}>
+                                <img className='exhibition__image' src={`${API_URL}/public/images/${exhibition.show_image}`} />
                                 <div className="exhibition-info">
-                                    <h3 className="exhibition-info__title">{show.title} <span className="exhibition-info__artist">| {show.artist}</span></h3>
-                                    <p className="exhibition-info__place">{show.location}</p>
+                                    <h3 className="exhibition-info__title">{exhibition.title} <span className="exhibition-info__artist">| {exhibition.artists}</span></h3>
+                                    <p className="exhibition-info__place">{exhibition.location}</p>
                                 </div>
                             </article>
                         )

@@ -2,6 +2,7 @@
 @use '../../styles/partials/typography.scss' as *;
 
 .header {
+    position: fixed;
     min-width: 18rem;
     background-color: aliceblue;
     padding: 2.5rem;
