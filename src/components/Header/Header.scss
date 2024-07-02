@@ -1,0 +1,41 @@
+@use '../../styles/partials/global.scss' as *;
+@use '../../styles/partials/typography.scss' as *;
+
+.header {
+    width: 18rem;
+    background-color: aliceblue;
+    height: 100vh;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logo {
+        width: 100px;
+    }
+
+    &__title {
+        font-size: 2rem;
+        padding-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    &-nav {
+        width: 100%;
+        &__item {
+            font-family: 'Space Mono';
+            font-weight: 400;
+            font-size: 1rem;
+            width: 100%;
+            list-style-type: none;
+            padding: .5rem 1rem;
+            border: 1px solid black;
+            margin-bottom: 1rem;
+            box-shadow: 5px 2.5px 7.5px rgb(255, 0, 0);
+
+            &:hover {
+                border: 1px solid red;
+                color: red;
+            }
+        }
+    }
+}
