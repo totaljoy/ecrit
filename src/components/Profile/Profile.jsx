@@ -9,12 +9,12 @@ const Profile = () => {
     const API_URL = import.meta.env.VITE_API_URL 
 
     const getUser = async() => {
-        const response = await axios(`${API_URL}/users/2`);
+        const response = await axios(`${API_URL}/users/1`);
         setUser(response.data[0])
     }
 
     const getFriendsList = async() => {
-        const response = await axios(`${API_URL}/users/friends/2`)
+        const response = await axios(`${API_URL}/users/friends/1`)
         setFriends(response.data)
     }
 

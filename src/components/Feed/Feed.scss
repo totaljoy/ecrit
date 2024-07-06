@@ -1,0 +1,72 @@
+.feed {
+    padding: 2rem 3rem;
+}
+
+.feed-header__title {
+    font-family: 'Space Mono';
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.post {
+    padding: .5rem;
+    border: 1px solid red;
+    background-color: #FCFFD3;
+    display: flex;
+    margin: .75rem 0;
+    width: 50rem;
+    font-size: 1.1rem;
+
+    &__user {
+        width: 50px;
+
+        &-image {
+            height: 50px;
+        }
+    }
+
+    &__info {
+        padding-left: 1rem;
+        &--special {
+            font-family: 'Space Mono';
+            font-weight: 600;
+            color: black;
+            letter-spacing: -.1ch;
+            font-size: 1rem;
+        }
+
+        &--italic {
+            font-style: italic;
+            font-weight: 600;
+        }
+    }
+
+    &__review {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .feed-review {
+            display: flex;
+            margin: .75rem 0;
+
+            &__show-image {
+                width: 15rem;
+            }
+            
+            &__container {
+                display: flex;
+                flex-direction: column;
+                width: 20rem;
+                padding: 0 1rem;
+            }
+
+            &__review {
+                padding: 0 1rem;
+                height: 100%;
+                border-left: 1px solid red;
+            }
+        }
+        
+    }
+}
