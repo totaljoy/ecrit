@@ -21,6 +21,7 @@ const CurrentShows = () => {
         <main className="home">
             <header>
                 <h1 className="current-shows__title">Exhibitions</h1>
+                <button>Add Visit</button>
             </header>
             <section className="current-shows">
                 {

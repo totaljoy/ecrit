@@ -1,8 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import './SingleShow.scss'
 import addIcon from '../../assets/icons/add-icon.png'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import Button from '@mui/material/Button';
+import TextAreaMUI from '../TextAreaMUI/TextAreaMUI.jsx'
 
 const SingleShow = () => {
 
@@ -11,6 +19,19 @@ const SingleShow = () => {
     const { exhibitionId } = useParams()
     const [show, setShow] = useState({})
     const [reviews, setReviews] = useState([])
+    const [open, setOpen] = useState(false)
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+ 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const Transition = forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+      });
 
     const getSingleExhibition = async() => {
 
@@ -51,18 +72,25 @@ const SingleShow = () => {
                 <p>{`${show.opening_date} - ${show.closing_date}`}</p>
                 <p>{show.description}</p>
             </article>
-            <form>
-                <div>
-                    <img src={addIcon} alt="Add Show" />
-                    <h2>Add {show.title}</h2>
-                </div>
-                <div>
-                    
-                    <label htmlFor="add-review">Add Review</label>
-                    <input type="text" placeholder="Add Review..."/>
-                </div>
-
-            </form>
+            <Button onClick={handleClickOpen}>
+                + Add <span>{show.title}</span>
+            </Button>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Transition}
+            >
+        <DialogTitle>Add Exhibition</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Add Review
+          </DialogContentText>
+          <TextAreaMUI></TextAreaMUI>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} type="submit">Post</Button>
+        </DialogActions>
+      </Dialog>
         </section>
         <section className="show-reviews">
             {
