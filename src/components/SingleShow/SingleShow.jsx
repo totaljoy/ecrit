@@ -11,6 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import TextAreaMUI from '../TextAreaMUI/TextAreaMUI.jsx'
+import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx'
 
 const SingleShow = () => {
 
@@ -72,25 +73,29 @@ const SingleShow = () => {
                 <p>{`${show.opening_date} - ${show.closing_date}`}</p>
                 <p>{show.description}</p>
             </article>
-            <Button onClick={handleClickOpen}>
+            <button onClick={handleClickOpen}>
                 + Add <span>{show.title}</span>
-            </Button>
+            </button>
             <Dialog
                 open={open}
                 onClose={handleClose}
                 TransitionComponent={Transition}
             >
-        <DialogTitle>Add Exhibition</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Add Review
-          </DialogContentText>
-          <TextAreaMUI></TextAreaMUI>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} type="submit">Post</Button>
-        </DialogActions>
-      </Dialog>
+                <div className="review-dialog">
+                    <h2 className="review-dialog__title">Add Exhibition</h2>
+                    <DialogContent className="review-dialog__content">
+                    <label className="review-dialog__label">
+                        Visit Date
+                    </label>
+                    <DatePickerMUI className='review-dialog__date'/>
+                    <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
+                    <TextAreaMUI />
+                    </DialogContent>
+                    <DialogActions>
+                    <button className='review-dialog__post'onClick={handleClose} type="submit">Post</button>
+                    </DialogActions>
+                </div>
+            </Dialog>
         </section>
         <section className="show-reviews">
             {

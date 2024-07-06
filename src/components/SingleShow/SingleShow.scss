@@ -1,3 +1,6 @@
+@use '../../styles/partials/global.scss' as *;
+@use '../../styles/partials/typography.scss' as *;
+
 .single-show {
     display: flex;
     flex-direction: column;
@@ -24,5 +27,40 @@
 
     &__image {
         width: 48rem;
+    }
+}
+
+.review-dialog {
+    border: 1.5px red solid;
+    border-radius: 10px;
+    width: 31.25rem;
+
+    &__title {
+        font-family: 'Space Mono';
+        font-size: 1.5rem;
+        padding: 1rem 1.5rem 0 1.5rem;
+    }
+
+    &__label {
+        font-family: 'Space Mono';
+
+        &--bottom {
+            padding-top: 1.5rem;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__post {
+        background-color: black;
+        color: white;
+        font-family: 'Space Mono';
+        border-style: none;
+        padding: .5rem 2rem;
+        margin: 1.25rem;
+        border-radius: 10px;
     }
 }
