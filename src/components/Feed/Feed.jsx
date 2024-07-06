@@ -36,8 +36,8 @@ const Feed = () => {
                         } else {
                             return (
                                 <article className="post">
-                                    <div>
-                                        <img className="post__user" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
+                                    <div className="post__user">
+                                        <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
                                     </div>
                                     <div className="post__review">
                                         <p className="post__info"><span className="post__info--special">{e.username}</span> visited</p>

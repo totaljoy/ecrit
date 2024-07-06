@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import './SingleShow.scss'
+import addIcon from '../../assets/icons/add-icon.png'
 
 const SingleShow = () => {
 
@@ -41,13 +42,27 @@ const SingleShow = () => {
         <main className="single-show">
         <h1 className="single-show__header">{show.title}</h1>
         <section className="show">
-            <img className='show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
-            <p>{show.title}</p>
-            <p>{artistsAsString}</p>
-            <p>{show.location}</p> 
-            <p>{show.address}</p>
-            <p>{`${show.opening_date} - ${show.closing_date}`}</p>
-            <p>{show.description}</p>
+            <article>
+                <img className='show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
+                <p>{show.title}</p>
+                <p>{artistsAsString}</p>
+                <p>{show.location}</p> 
+                <p>{show.address}</p>
+                <p>{`${show.opening_date} - ${show.closing_date}`}</p>
+                <p>{show.description}</p>
+            </article>
+            <form>
+                <div>
+                    <img src={addIcon} alt="Add Show" />
+                    <h2>Add {show.title}</h2>
+                </div>
+                <div>
+                    
+                    <label htmlFor="add-review">Add Review</label>
+                    <input type="text" placeholder="Add Review..."/>
+                </div>
+
+            </form>
         </section>
         <section className="show-reviews">
             {
