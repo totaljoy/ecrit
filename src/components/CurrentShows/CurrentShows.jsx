@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './CurrentShows.scss'
+import { Link } from "react-router-dom";
 
 const CurrentShows = () => {
 
@@ -19,21 +20,32 @@ const CurrentShows = () => {
     return (
         <main className="home">
             <header>
-                <h1 className="current-shows__title">Current Shows</h1>
+                <h1 className="current-shows__title">Exhibitions</h1>
             </header>
             <section className="current-shows">
                 {
                     Object.keys(shows).map((showId) => {
                         const exhibition = shows[showId]
-                        console.log(exhibition)
+
+                        const makeArtistsArrString = (exhibition) => {
+                            if (exhibition.artists.length > 1) {
+                                return exhibition.artists.join(', ') 
+                        } else {
+                            return exhibition.artists
+                        }}
+
+                        const artistsAsString = makeArtistsArrString(exhibition)
+
                         return (
-                            <article className="exhibition" key={exhibition.show_id}>
+                            <Link className='exhibition__link' to={`/${exhibition.show_id}`} key={exhibition.show_id}>
+                            <article className="exhibition">
                                 <img className='exhibition__image' src={`${API_URL}/public/images/${exhibition.show_image}`} />
                                 <div className="exhibition-info">
-                                    <h3 className="exhibition-info__title">{exhibition.title} <span className="exhibition-info__artist">| {exhibition.artists}</span></h3>
+                                    <h3 className="exhibition-info__title">{exhibition.title} <span className="exhibition-info__artist">| {artistsAsString}</span></h3>
                                     <p className="exhibition-info__place">{exhibition.location}</p>
                                 </div>
                             </article>
+                            </Link>
                         )
                     })
                 }
