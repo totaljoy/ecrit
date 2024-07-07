@@ -26,7 +26,7 @@ const Profile = () => {
     return (
         <>
         <form>
-            <input type="search" name="search" className="search" />
+            <input type="search" name="search" className="search" placeholder="Search..."/>
         </form>
         <section className="profile-widget">
             <img className="profile-widget__avatar" src={`${API_URL}/public/images/${user.avatar}`} alt='Avatar' />

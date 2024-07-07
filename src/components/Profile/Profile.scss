@@ -1,3 +1,23 @@
+@use '../../styles/partials/global.scss' as *;
+@use '../../styles/partials/typography.scss' as *;
+
+
+.search {
+    margin: 2rem 3rem;
+    position: fixed;
+    right: 0;
+    font-family: 'Space Mono';
+    box-shadow: 0px 0px 7.5px rgb(182, 188, 195);
+    border-radius: 10px;
+    border: 1px solid red;
+    width: 18rem;
+    padding: .5rem 1rem;
+    
+    &:placeholder {
+        color: grey;
+    }
+}
+
 .profile-widget {
     position: fixed;
     right: 0;
@@ -27,4 +47,5 @@
             color: red;
         }
     }
+
 }
