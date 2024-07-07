@@ -20,7 +20,7 @@ const SingleShow = () => {
     const [open, setOpen] = useState(false)
 
     const handleClose = () => {
-        setOpen(false);
+        setOpen(false)
     };
  
     const handleClickOpen = () => {
@@ -98,21 +98,24 @@ const SingleShow = () => {
                 open={open}
                 onClose={handleClose}
                 TransitionComponent={Transition}
+                className="dialog"
             >
                 <form action="submit" onSubmit={handleSubmit}>
                     <div className="review-dialog">
                         <h2 className="review-dialog__title">Add Exhibition</h2>
                         <DialogContent className="review-dialog__content">
+                        <h3 className="review-dialog__label">{show.title}</h3>
+                        <img src={`${API_URL}/public/images/${show.show_image}`} alt="Exhibition Image" className="review-dialog__thumbnail"/>
                         <label className="review-dialog__label">
                             Visit Date
                         </label>
                         <DatePickerMUI className='review-dialog__date'/>
                         <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
-                        <input type="text" name="review"/>
+                        <textarea type="text" name="review" className="review-dialog__input"/>
                         </DialogContent>
                         <DialogActions>
                             <button className='review-dialog__post' type="submit">Post</button>
-                            <button className='review-dialog__post' onClick={handleClose} type="submit">Cancel</button>
+                            <button className='review-dialog__post' onClick={handleClose} type="cancel">Cancel</button>
                         </DialogActions>
                     </div>
                 </form>

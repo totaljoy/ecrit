@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import './CurrentShows.scss'
 import { Link } from "react-router-dom";
+import addIcon from '../../assets/icons/add-icon.png'
+import starIcon from '../../assets/icons/star.png'
 
 const CurrentShows = () => {
 
@@ -21,7 +23,6 @@ const CurrentShows = () => {
         <main className="home">
             <header>
                 <h1 className="current-shows__title">Exhibitions</h1>
-                <button>Add Visit</button>
             </header>
             <section className="current-shows">
                 {
@@ -40,6 +41,10 @@ const CurrentShows = () => {
                         return (
                             <Link className='exhibition__link' to={`/${exhibition.show_id}`} key={exhibition.show_id}>
                             <article className="exhibition">
+                                <div className="exhibition__icons">
+                                    <img className='icon' src={starIcon} alt="Add to List" />
+                                    <img className='icon' src={addIcon} alt='Add Exhibition'/>
+                                </div>
                                 <img className='exhibition__image' src={`${API_URL}/public/images/${exhibition.show_image}`} />
                                 <div className="exhibition-info">
                                     <h3 className="exhibition-info__title">{exhibition.title} <span className="exhibition-info__artist">| {artistsAsString}</span></h3>

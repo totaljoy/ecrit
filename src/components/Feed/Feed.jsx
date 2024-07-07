@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './Feed.scss'
+import { Link } from "react-router-dom";
 
 const Feed = () => {
 
@@ -26,15 +27,18 @@ const Feed = () => {
                     activity.map((e) => {
                         if (!e.review) {
                             return (
+                                <Link to={`/${e.show_id}`} key={e.id} className="post__link">
                                 <article className="post">
                                     <div className="post__user">
                                         <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
                                     </div>
                                     <p className="post__info"><span className="post__info--special">{e.username}</span> visited <span className="post__info--italic">{e.title}</span> at <span className="post_info--special">{e.location}</span></p>
                                 </article>
+                                </Link>
                             )
                         } else {
                             return (
+                                <Link to={`/${e.show_id}`} key={e.id} className="post__link">
                                 <article className="post">
                                     <div className="post__user">
                                         <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
@@ -52,9 +56,8 @@ const Feed = () => {
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </article>
+                                </Link>
                             )
                         }
                     })
