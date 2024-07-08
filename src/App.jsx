@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import HomePage from './pages/HomePage/HomePage'
 import SingleShowPage from './pages/SingleShowPage/SingleShowPage.jsx'
-import Profile from './components/Profile/Profile'
+import UserNav from './components/UserNav/UserNav.jsx'
 import FeedPage from './pages/FeedPage/FeedPage.jsx'
 import './App.scss'
 
@@ -18,7 +18,7 @@ function App() {
         <Route path='/explore' element={<HomePage />}/>
         <Route path='/:exhibitionId' element={<SingleShowPage />}/>
       </Routes>
-      <Profile />
+      <UserNav />
       </div>
     </BrowserRouter>
   )}
