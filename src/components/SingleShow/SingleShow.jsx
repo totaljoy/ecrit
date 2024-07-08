@@ -28,7 +28,7 @@ const SingleShow = () => {
     };
 
     const Transition = forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />;
+        return <Slide direction="up" ref={ref} {...props}/>;
       });
 
     const getSingleExhibition = async() => {
@@ -80,31 +80,11 @@ const SingleShow = () => {
 
     return (
         <main className="single-show__page">
-        <h1 className="single-show__header">{show.title}</h1>
-        <section className="single-show">
-            <article>
-                <img className='single-show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
-                <div className="single-show__info-container">
-                    <div className="single-show__info">
-                        <p className="single-show__info-item">{show.title}</p>
-                        <p className="single-show__info-item">{`${show.opening_date} - ${show.closing_date}`}</p>
-                    </div>
-                    <div className="single-show__info">
-                        <p className="single-show__info-item single-show__info-item--right">{show.location}</p>
-                        <p className="single-show__info-item single-show__info-item--right">{show.address}</p>
-                    </div>
-                </div>
-                <p className="single-show__info-item--artists">{artistsAsString}</p>
-                <p className="single-show__info-item--artists">{show.description}</p>
-            </article>
-            <div className="single-show__buttons">
-                <img className='icon' src={starIcon} alt="Add to List" />
-                <img className='icon' src={addIcon} alt='Add Exhibition' onClick={handleClickOpen}/>
-            </div>
             <Dialog
                 open={open}
                 onClose={handleClose}
-                TransitionComponent={Transition}
+                // TransitionComponent={Transition}
+                // closeAfterTransition
                 className="dialog"
             >
                 <form action="submit" onSubmit={handleSubmit}>
@@ -127,6 +107,27 @@ const SingleShow = () => {
                     </div>
                 </form>
             </Dialog>
+        <h1 className="single-show__header">{show.title}</h1>
+        <section className="single-show">
+            <article>
+                <img className='single-show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
+                <div className="single-show__info-container">
+                    <div className="single-show__info">
+                        <p className="single-show__info-item">{show.title}</p>
+                        <p className="single-show__info-item">{`${show.opening_date} - ${show.closing_date}`}</p>
+                    </div>
+                    <div className="single-show__info">
+                        <p className="single-show__info-item single-show__info-item--right">{show.location}</p>
+                        <p className="single-show__info-item single-show__info-item--right">{show.address}</p>
+                    </div>
+                </div>
+                <p className="single-show__info-item--artists">{artistsAsString}</p>
+                <p className="single-show__info-item--artists">{show.description}</p>
+            </article>
+            <div className="single-show__buttons">
+                <img className='icon' src={starIcon} alt="Add to List" />
+                <img className='icon' src={addIcon} alt='Add Exhibition' onClick={handleClickOpen}/>
+            </div>
         </section>
         <section className="show-reviews">
             <h1 className="show-reviews__header">Reviews</h1>

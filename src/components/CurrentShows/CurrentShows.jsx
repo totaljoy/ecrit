@@ -67,6 +67,34 @@ const CurrentShows = () => {
             <header>
                 <h1 className="current-shows__title">Exhibitions</h1>
             </header>
+            {currentExhibition && (
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    // TransitionComponent={Transition}
+                                    className="dialog"
+                                >
+                                    <form action="submit" onSubmit={handleSubmit}>
+                                        <div className="review-dialog">
+                                            <h2 className="review-dialog__title">Add Exhibition</h2>
+                                            <DialogContent className="review-dialog__content">
+                                                <h3 className="review-dialog__label">{currentExhibition.title}</h3>
+                                                <img src={`${API_URL}/public/images/${currentExhibition.show_image}`} alt="Exhibition Image" className="review-dialog__thumbnail" />
+                                                <label className="review-dialog__label">
+                                                    Visit Date
+                                                </label>
+                                                <DatePickerMUI className='review-dialog__date' />
+                                                <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
+                                                <textarea type="text" name="review" className="review-dialog__input" />
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <button className='review-dialog__post' type="submit">Post</button>
+                                                <button className='review-dialog__post' onClick={handleClose} type="button">Cancel</button>
+                                            </DialogActions>
+                                        </div>
+                                    </form>
+                                </Dialog>
+                            )}
             <section className="current-shows">
                 {
                     Object.keys(shows).map((showId) => {
@@ -97,34 +125,6 @@ const CurrentShows = () => {
                                 </div>
                                 </Link>
                             </article>
-                            {currentExhibition && (
-                                <Dialog
-                                    open={open}
-                                    onClose={handleClose}
-                                    TransitionComponent={Transition}
-                                    className="dialog"
-                                >
-                                    <form action="submit" onSubmit={handleSubmit}>
-                                        <div className="review-dialog">
-                                            <h2 className="review-dialog__title">Add Exhibition</h2>
-                                            <DialogContent className="review-dialog__content">
-                                                <h3 className="review-dialog__label">{currentExhibition.title}</h3>
-                                                <img src={`${API_URL}/public/images/${currentExhibition.show_image}`} alt="Exhibition Image" className="review-dialog__thumbnail" />
-                                                <label className="review-dialog__label">
-                                                    Visit Date
-                                                </label>
-                                                <DatePickerMUI className='review-dialog__date' />
-                                                <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
-                                                <textarea type="text" name="review" className="review-dialog__input" />
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <button className='review-dialog__post' type="submit">Post</button>
-                                                <button className='review-dialog__post' onClick={handleClose} type="button">Cancel</button>
-                                            </DialogActions>
-                                        </div>
-                                    </form>
-                                </Dialog>
-                            )}
                          </>
                         )
                     })
