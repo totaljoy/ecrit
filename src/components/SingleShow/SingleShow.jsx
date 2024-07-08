@@ -9,6 +9,8 @@ import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx'
 import starIcon from '../../assets/icons/star.png'
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 const SingleShow = () => {
 
@@ -18,6 +20,9 @@ const SingleShow = () => {
     const [show, setShow] = useState({})
     const [reviews, setReviews] = useState([])
     const [open, setOpen] = useState(false)
+    const [visitDate, setVisitDate] = useState(dayjs());
+
+    dayjs.extend(relativeTime)
 
     const handleClose = () => {
         setOpen(false)
@@ -27,9 +32,6 @@ const SingleShow = () => {
         setOpen(true);
     };
 
-    const Transition = forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props}/>;
-      });
 
     const getSingleExhibition = async() => {
 
@@ -40,7 +42,8 @@ const SingleShow = () => {
     const getReviews = async() => {
 
         const response = await axios(`${API_URL}/reviews/${ exhibitionId }`);
-        setReviews(response.data)
+        const sortedData = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+        setReviews(sortedData)
     }
 
     const postNewReview = async (newReview) => {
@@ -53,15 +56,17 @@ const SingleShow = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(visitDate.format('YYYY-MM-DD HH:mm:ss'))
         const newReview = {
             user_id: 1,
             show_id: exhibitionId,
+            date: visitDate.format('YYYY-MM-DD HH:mm:ss'),
             seen: true,
             review: event.target.review.value
         }
         postNewReview(newReview);
         console.log(newReview)
-        navigate('/:exhibitionId')
+        navigate(`/:exhibitionId`)
     }
 
     useEffect(() => {
@@ -83,8 +88,6 @@ const SingleShow = () => {
             <Dialog
                 open={open}
                 onClose={handleClose}
-                // TransitionComponent={Transition}
-                // closeAfterTransition
                 className="dialog"
             >
                 <form action="submit" onSubmit={handleSubmit}>
@@ -96,12 +99,16 @@ const SingleShow = () => {
                         <label className="review-dialog__label">
                             Visit Date
                         </label>
-                        <DatePickerMUI className='review-dialog__date'/>
+                        <DatePickerMUI 
+                                className='review-dialog__date'
+                                value={visitDate}
+                                onChange={(newValue) => setVisitDate(newValue)}                              
+                        />
                         <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
                         <textarea type="text" name="review" className="review-dialog__input"/>
                         </DialogContent>
                         <DialogActions>
-                            <button className='review-dialog__post' type="submit">Post</button>
+                            <button className='review-dialog__post' onClick={handleClose} type="submit">Post</button>
                             <button className='review-dialog__post' onClick={handleClose} type="cancel">Cancel</button>
                         </DialogActions>
                     </div>
@@ -134,6 +141,7 @@ const SingleShow = () => {
             {
                 reviews.map((review) => {
                     if (review.review) {
+                        console.log(review)
                         return (
                             <article className="show-review__container">
                                 <div className="show-review__user">
@@ -142,7 +150,7 @@ const SingleShow = () => {
                                 <div className="show-review">
                                     <div className='show-review__user-info'> 
                                         <p className="show-review__username">{review.username}</p>
-                                        <p>{review.created_at}</p>
+                                        <p className="show-review__date">{review.date && dayjs(review.date).fromNow()}</p>
                                     </div>
                                     <div className="show-review__content">
                                         <p className="feed-review__review">{review.review}</p>

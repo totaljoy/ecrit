@@ -1,12 +1,10 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { styled } from '@mui/system';
 
-export default function DatePickerValue() {
-  const [value, setValue] = React.useState(dayjs('2024-07-06'));
+export default function DatePickerValue({value, onChange}) {
 
   const StyledDatePicker = styled(DatePicker)({
     '.MuiPickersToolbar-root': {
@@ -23,7 +21,7 @@ export default function DatePickerValue() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
         <StyledDatePicker 
                   value={value}
-                  onChange={(newValue) => setValue(newValue)}
+                  onChange={onChange}
         />
     </LocalizationProvider>
   );
