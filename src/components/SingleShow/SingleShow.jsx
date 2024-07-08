@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx'
+import starIcon from '../../assets/icons/star.png'
 
 const SingleShow = () => {
 
@@ -78,21 +79,28 @@ const SingleShow = () => {
     const artistsAsString = makeArtistsArrString(show)
 
     return (
-        <main className="single-show">
+        <main className="single-show__page">
         <h1 className="single-show__header">{show.title}</h1>
-        <section className="show">
+        <section className="single-show">
             <article>
-                <img className='show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
-                <p>{show.title}</p>
-                <p>{artistsAsString}</p>
-                <p>{show.location}</p> 
-                <p>{show.address}</p>
-                <p>{`${show.opening_date} - ${show.closing_date}`}</p>
-                <p>{show.description}</p>
+                <img className='single-show__image' src={`${API_URL}/public/images/${show.show_image}`} alt="" />
+                <div className="single-show__info-container">
+                    <div className="single-show__info">
+                        <p className="single-show__info-item">{show.title}</p>
+                        <p className="single-show__info-item">{`${show.opening_date} - ${show.closing_date}`}</p>
+                    </div>
+                    <div className="single-show__info">
+                        <p className="single-show__info-item single-show__info-item--right">{show.location}</p>
+                        <p className="single-show__info-item single-show__info-item--right">{show.address}</p>
+                    </div>
+                </div>
+                <p className="single-show__info-item--artists">{artistsAsString}</p>
+                <p className="single-show__info-item--artists">{show.description}</p>
             </article>
-            <button onClick={handleClickOpen}>
-                + Add <span>{show.title}</span>
-            </button>
+            <div className="single-show__buttons">
+                <img className='icon' src={starIcon} alt="Add to List" />
+                <img className='icon' src={addIcon} alt='Add Exhibition' onClick={handleClickOpen}/>
+            </div>
             <Dialog
                 open={open}
                 onClose={handleClose}

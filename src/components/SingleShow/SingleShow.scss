@@ -1,10 +1,33 @@
  
 
-.single-show {
+.single-show__page {
     display: flex;
     flex-direction: column;
     padding: 2rem 3rem;
     max-width: 1280px;
+}
+
+.single-show {
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+    padding: 1rem;
+    background-color: #fffede;
+    box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
+    margin: 1rem 0;
+    border-radius: 10px;
+
+    &__buttons {
+        margin: 0;
+        padding: .25rem .5rem;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 1;
+
+        .icon {
+            width: 30px;
+        }
+    }
 
     &__header {
         font-size: 1.5rem;
@@ -13,20 +36,40 @@
         padding-bottom: 1rem;
         max-width: 1280px;
     }
-}
-
-.show {
-    display: flex;
-    flex-direction: column;
-    width: 45rem;
-    padding: 1rem;
-    background-color: #fffede;
-    box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
-    margin: 1rem 0;
-    border-radius: 10px;
 
     &__image {
-        width: 43rem;
+        width: 48rem;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        padding: 0 .5rem;
+
+        &-item {
+            font-family: 'Space Mono';
+            font-size: 1rem;
+            letter-spacing: -.05ch;
+            
+            &--right {
+                text-align: right;
+            }
+
+            &--artists {
+                // font-family: 'Space Mono';
+                border-bottom: 1px solid rgb(0, 0, 0);
+                line-height: 1.5rem;
+                font-size: 1.1rem;
+                padding: .5rem 0;
+                margin: 0 .5rem;
+            }
+        }
+        
+        &-container {
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem 0;
+        }
     }
 }
 

@@ -26,16 +26,12 @@
     height: 80vh;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
-    background-color: aliceblue;
-    box-shadow: 0px 0px 7.5px rgb(182, 188, 195);
     border-radius: 10px;
 
     &__avatar {
-        margin: 1rem;
-        border: 1px solid red;
         box-shadow: 0px 0px 7.5px rgb(182, 188, 195);
-        border-radius: 5px;
+        border-radius: 50%;
+        width: 50px;
 
     }
 
@@ -45,6 +41,15 @@
         &__name {
             font-family: 'Space Mono';
             color: red;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+
+        &-user {
+            padding: 0 1rem;
         }
     }
 

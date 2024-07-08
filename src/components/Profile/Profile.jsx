@@ -29,13 +29,15 @@ const Profile = () => {
             <input type="search" name="search" className="search" placeholder="Search..."/>
         </form>
         <section className="profile-widget">
-            <img className="profile-widget__avatar" src={`${API_URL}/public/images/${user.avatar}`} alt='Avatar' />
-            <article className="profile-widget-info">
-                <p className="profile-widget-info__name">{user.name}</p>
-                <p className="profile-widget-info__user">@{user.username}</p>
+                <div className="profile-widget__info">
+                    <img className="profile-widget__avatar" src={`${API_URL}/public/images/${user.avatar}`} alt='Avatar' />
+                    <div className="profile-widget__info-user">
+                        <p className="profile-widget-info__name">{user.name}</p>
+                        <p className="profile-widget-info__user">@{user.username}</p>
+                    </div>
+                </div>
                 <p className="profile-widget-info__user">Friends: {friends.length}</p>
                 <p className="profile-widget-info__user">Fave Artist: {user.fave_artist}</p>
-            </article>
         </section>
         </>
     )
