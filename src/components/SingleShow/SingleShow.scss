@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     padding: 2rem 3rem;
-    max-width: 1280px;
+    max-width: 50rem;
 }
 
 .single-show {
@@ -12,8 +12,8 @@
     flex-direction: column;
     width: 50rem;
     padding: 1rem;
-    background-color: #fffede;
-    box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
+    background-color: #f6f6f6;
+    border: 1px solid rgb(203, 203, 203);
     margin: 1rem 0;
     border-radius: 10px;
 
@@ -74,9 +74,8 @@
 }
 
 .review-dialog {
-    border: 1.5px red solid;
     border-radius: 10px;
-    width: 31.25rem;
+    width: 35rem;
 
     &__title {
         font-family: 'Space Mono';
@@ -87,6 +86,7 @@
 
     &__thumbnail {
         padding-bottom: 1.5rem;
+        width: 15rem;
     }
 
     &__label {
@@ -108,8 +108,7 @@
 
     &__input {
         height: 100%;
-        min-height: 10rem;
-        max-height: 20rem;
+        min-height: 15rem;
         overflow-y: auto;
         border-radius: 10px;
         border: 1px solid black;
@@ -137,12 +136,12 @@
     width: 100%;
 
     &__container {
-        background-color: #fffede;
-        box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
+        background-color: #f6f6f6;
+        border: 1px solid rgb(203, 203, 203);
         margin: 1rem 0;
         border-radius: 10px;
         display: flex;
-        padding: .5rem;
+        padding: .75rem;
     }
 
     &__user {
@@ -155,12 +154,12 @@
             justify-content: space-between;
             border-bottom: 1px solid black;
             width: 95%;
-            margin: 0 1rem;
+            margin: 0 .5rem;
             padding: .5rem 0;
         }
 
         &-image {
-            height: 50px;
+            height: 40px;
             border-radius: 50%;
             box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
         }
@@ -174,6 +173,6 @@
     }
 
     &__content {
-        padding: 1rem;
+        padding: 1rem .5rem;
     }
 }
