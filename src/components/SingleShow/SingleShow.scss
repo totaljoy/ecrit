@@ -128,3 +128,52 @@
         border-radius: 10px;
     }
 }
+
+.show-reviews {
+    width: 50rem;
+}
+
+.show-review {
+    width: 100%;
+
+    &__container {
+        background-color: #fffede;
+        box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
+        margin: 1rem 0;
+        border-radius: 10px;
+        display: flex;
+        padding: .5rem;
+    }
+
+    &__user {
+        width: 50px;
+        height: 50px;
+        align-self: flex-start;
+
+        &-info {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid black;
+            width: 95%;
+            margin: 0 1rem;
+            padding: .5rem 0;
+        }
+
+        &-image {
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 7.5px rgb(140, 148, 156);
+        }
+    }
+
+    &__username {
+        font-family: 'Space Mono';
+        letter-spacing: -.1ch;
+        width: 100%;
+        
+    }
+
+    &__content {
+        padding: 1rem;
+    }
+}

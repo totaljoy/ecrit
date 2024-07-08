@@ -129,18 +129,25 @@ const SingleShow = () => {
             </Dialog>
         </section>
         <section className="show-reviews">
+            <h1 className="show-reviews__header">Reviews</h1>
             {
                 reviews.map((review) => {
                     if (review.review) {
                         return (
-                            <>
-                            <article className="show-review">
-                                <p>{review.name}</p>
-                                <p>@{review.username}</p>
-                                <p>{review.created_at}</p>
-                                <p>{review.review}</p>
+                            <article className="show-review__container">
+                                <div className="show-review__user">
+                                    <img className="show-review__user-image" src={`${API_URL}/public/images/${review.avatar}`} alt={review.username} />
+                                </div>
+                                <div className="show-review">
+                                    <div className='show-review__user-info'> 
+                                        <p className="show-review__username">{review.username}</p>
+                                        <p>{review.created_at}</p>
+                                    </div>
+                                    <div className="show-review__content">
+                                        <p className="feed-review__review">{review.review}</p>
+                                    </div>
+                                </div>
                             </article>
-                            </>
                         )
                     }
                 })
