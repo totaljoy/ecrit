@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import './UserNav.scss'
 
-const Profile = () => {
+const UserNav = () => {
 
     const [user, setUser] = useState([])
     const [friends, setFriends] = useState([])
@@ -44,4 +44,4 @@ const Profile = () => {
 
 }
 
-export default Profile
+export default UserNav
