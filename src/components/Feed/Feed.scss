@@ -1,19 +1,26 @@
 .feed {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin: 2rem 3rem;
+    width: 80%;
     max-width: 50rem;
-}
+    margin: 2rem auto;
 
-.feed-header__title {
-    font-family: 'Space Mono';
-    font-size: 1.5rem;
-    padding-bottom: 1rem;
+    &-hero {
+        padding: 2rem 0;
+    }
+
+    &-hero__title {
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    &-hero__tagline {
+        color: red;
+    }
 }
 
 .post {
-    padding: .75rem;
+    padding: 1rem;
     background-color: #f6f6f6;
     border: 1px solid rgb(203, 203, 203);
     display: flex;
@@ -48,7 +55,7 @@
             text-align: right;
             letter-spacing: -.05ch;
             font-size: .75rem;
-            font-family: 'Space Mono';
+            font-family: 'Roboto Mono';
             color: rgb(131, 131, 131);
             align-self: flex-start;
         }
@@ -59,7 +66,7 @@
         }
 
         &--special {
-            font-family: 'Space Mono';
+            font-family: 'Roboto Mono';
             font-weight: 600;
             color: black;
             letter-spacing: -.1ch;
@@ -81,13 +88,20 @@
         .feed-review {
             display: flex;
             margin: .75rem 0;
+            padding: 1rem 0;
 
             &__show-image {
                 width: 11rem;
+                margin-bottom: .75rem;
             }
 
-            &show__title {
+            &__show-title {
                 width: 11rem;
+                font-family: 'Roboto Mono';
+                font-size: .75rem;
+                color: #616161;
+                text-align: left;
+
             }
             
             &__container {
@@ -101,6 +115,8 @@
 
             &__review {
                 padding: 0 1rem;
+                // font-family: 'Space Mono';
+                // font-size: .80rem;
                 height: 100%;
                 border-left: 1px solid rgb(0, 0, 0);
             }

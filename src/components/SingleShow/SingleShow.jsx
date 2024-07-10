@@ -1,14 +1,14 @@
 import { useState, useEffect, forwardRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import './SingleShow.scss'
-import addIcon from '../../assets/icons/add-icon.png'
+import addIcon from '../../assets/icons/add.svg'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx'
-import starIcon from '../../assets/icons/star.png'
+import starIcon from '../../assets/icons/star.svg'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -109,7 +109,7 @@ const SingleShow = () => {
                         </DialogContent>
                         <DialogActions>
                             <button className='review-dialog__post' onClick={handleClose} type="submit">Post</button>
-                            <button className='review-dialog__post' onClick={handleClose} type="cancel">Cancel</button>
+                            <button className='review-dialog__post' onClick={handleClose} type="button">Cancel</button>
                         </DialogActions>
                     </div>
                 </form>
@@ -132,8 +132,8 @@ const SingleShow = () => {
                 <p className="single-show__info-item--artists">{show.description}</p>
             </article>
             <div className="single-show__buttons">
-                <img className='icon' src={starIcon} alt="Add to List" />
-                <img className='icon' src={addIcon} alt='Add Exhibition' onClick={handleClickOpen}/>
+                <img className='single-show__icon' src={starIcon} alt="Add to List" />
+                <img className='single-show__icon' src={addIcon} alt='Add Exhibition' onClick={handleClickOpen}/>
             </div>
         </section>
         <section className="show-reviews">
@@ -143,20 +143,22 @@ const SingleShow = () => {
                     if (review.review) {
                         console.log(review)
                         return (
-                            <article className="show-review__container">
-                                <div className="show-review__user">
-                                    <img className="show-review__user-image" src={`${API_URL}/public/images/${review.avatar}`} alt={review.username} />
-                                </div>
-                                <div className="show-review">
-                                    <div className='show-review__user-info'> 
-                                        <p className="show-review__username">{review.username}</p>
-                                        <p className="show-review__date">{review.date && dayjs(review.date).fromNow()}</p>
+                            <Link to={`/profile/${review.user_id}`} className='show-review__link'>
+                                <article className="show-review__container">
+                                    <div className="show-review__user">
+                                        <img className="show-review__user-image" src={`${API_URL}/public/images/${review.avatar}`} alt={review.username} />
                                     </div>
-                                    <div className="show-review__content">
-                                        <p className="feed-review__review">{review.review}</p>
+                                    <div className="show-review">
+                                        <div className='show-review__user-info'> 
+                                            <p className="show-review__username">{review.username}</p>
+                                            <p className="show-review__date">{review.date && dayjs(review.date).fromNow()}</p>
+                                        </div>
+                                        <div className="show-review__content">
+                                            <p className="feed-review__review">{review.review}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
+                                </article>
+                            </Link>
                         )
                     }
                 })

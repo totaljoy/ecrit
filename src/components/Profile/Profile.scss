@@ -1,0 +1,111 @@
+.profile {
+    max-width: 50rem;
+    // padding: 4rem 3rem;
+    width: 80%;
+    margin: 4rem auto;
+
+&-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 1rem;
+}
+
+&__top {
+    display: flex;
+}
+
+&__user {
+        &-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #f6f6f6;
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 10px;
+        }
+    
+        &-image {
+            width: 12rem;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 1px solid rgb(203, 203, 203);
+        }
+
+        &-name {
+            font-family: 'Roboto Mono';
+            color: red;
+        }
+    }
+
+&__badges {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 3rem;
+    background-color: #f6f6f6;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 10px;
+    margin: 1rem 1rem 0 1rem;
+    height: 85%;
+}
+
+&__badge {
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &-icon {
+        font-size: 4rem;
+    }
+
+    &-title {
+        font-family: 'Roboto Mono';
+        font-size: .75rem;
+        color: grey;
+        width: 100%;
+    }
+}
+
+&__info {
+    &-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem 3rem;
+        background-color: #f6f6f6;
+        border: 1px solid rgb(203, 203, 203);
+        border-radius: 10px;
+        margin-left: 1rem;
+        height: fit-content;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-label {
+        font-family: 'Roboto Mono';
+        font-size: .75rem;
+        color: grey;
+    }
+
+    &-value {
+        color: red;
+        font-family: 'Roboto Mono';
+        font-size: 1.5rem;
+    }
+}
+
+&-reviews {
+    padding: 2rem 0;
+}
+}

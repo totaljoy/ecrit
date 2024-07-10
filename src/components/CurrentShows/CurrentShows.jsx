@@ -2,13 +2,13 @@ import { useState, useEffect, forwardRef } from "react";
 import axios from "axios";
 import './CurrentShows.scss'
 import { Link, useNavigate } from "react-router-dom";
-import addIcon from '../../assets/icons/add-icon.png'
-import starIcon from '../../assets/icons/star.png'
+import addIcon from '../../assets/icons/add.svg'
+import starIcon from '../../assets/icons/star.svg'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
-import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx'
+import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx';
 
 const CurrentShows = () => {
 
@@ -64,8 +64,9 @@ const CurrentShows = () => {
 
     return (
         <main className="home">
-            <header>
+            <header className="current-shows__hero">
                 <h1 className="current-shows__title">Exhibitions</h1>
+                <h3 className="current-shows__tagline">Explore New York's exhibitions, track the ones you've seen, plan to see the ones you haven't</h3>
             </header>
             {currentExhibition && (
                                 <Dialog

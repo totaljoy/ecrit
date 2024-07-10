@@ -1,17 +1,18 @@
 @use '../../styles/partials/global.scss' as *;
 @use '../../styles/partials/typography.scss' as *;
 
-
+.nav {
+    width: 20%;
+    margin-right: 3rem;
+    margin-top: 2rem;
+}
 .search {
-    margin: 2rem 3rem;
-    position: fixed;
-    right: 0;
     font-family: 'Space Mono';
     border-radius: 10px;
     width: 18rem;
     padding: .5rem 1rem;
+    margin-bottom: 2rem;
     border: 1px solid black;
-    box-shadow: 1px 1px 10px rgb(254, 0, 0);
     
     &:placeholder {
         color: grey;
@@ -19,9 +20,6 @@
 }
 
 .profile-widget {
-    position: fixed;
-    right: 0;
-    margin: 6rem 3rem;
     width: 18rem;
     height: 80vh;
     display: flex;

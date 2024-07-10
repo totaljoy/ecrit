@@ -12,7 +12,7 @@ const Feed = () => {
 
     const getActivity = async() => {
         const response = await axios(`${API_URL}/reviews`)
-        const sortedData = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+        const sortedData = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
         setActivity(sortedData)
     }
 
@@ -24,8 +24,9 @@ const Feed = () => {
 
     return (
         <main className="feed">
-            <header>
-                <h1 className="feed-header__title">Feed</h1>
+            <header className="feed-hero">
+                <h2 className="feed-hero__title">Welcome back to éCrit, internalgarden</h2>
+                <h3 className="feed-hero__tagline">Share your exhibition experiences and connect with others</h3>
             </header>
             <section>
                 {
