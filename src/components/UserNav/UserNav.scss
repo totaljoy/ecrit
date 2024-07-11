@@ -56,3 +56,25 @@
     }
 
 }
+
+.user-nav {
+
+    &__friend {
+        padding: .25rem 1.5rem;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: red;
+        }
+    }
+}
+
+.user-nav__dropdown {
+    padding: .5rem 0;
+    display: flex;
+    justify-content: flex-start;
+}

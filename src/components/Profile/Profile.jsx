@@ -42,6 +42,9 @@ const Profile = () => {
 
  return (
     <main className="profile">
+        <header className="profile__hero">
+                <h1 className="profile__title">Profile</h1>
+        </header>
         <section className="profile__top">
             <article className="profile__user-box">
                 <img className='profile__user-image' src={`${API_URL}/public/images/${user.avatar}`} alt={user.username}/>

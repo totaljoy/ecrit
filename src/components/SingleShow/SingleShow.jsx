@@ -141,7 +141,6 @@ const SingleShow = () => {
             {
                 reviews.map((review) => {
                     if (review.review) {
-                        console.log(review)
                         return (
                             <Link to={`/profile/${review.user_id}`} className='show-review__link'>
                                 <article className="show-review__container">

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './UserNav.scss'
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 const UserNav = () => {
 
@@ -10,6 +11,7 @@ const UserNav = () => {
     const [friends, setFriends] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
     const [search, setSearch] = useState(searchParams.get('query') || '');
+    const [isFriendsOpen, setIsFriendsOpen] = useState(false);
     const navigate = useNavigate()
 
     const API_URL = import.meta.env.VITE_API_URL 
@@ -36,6 +38,10 @@ const UserNav = () => {
         setSearch('')
     }
 
+    const toggleDropdown = () => {
+        setIsFriendsOpen(!isFriendsOpen);
+      };
+
     useEffect(() => {
         getUser()
         getFriendsList()
@@ -54,15 +60,21 @@ const UserNav = () => {
                             <p className="profile-widget-info__user">{user.username}</p>
                         </div>
                     </div>
-                    <div>
-                            <h4>Friends</h4>
-                            <div>
-                            {
+                    <div className="user-nav__info">   
+                            <div className="user-nav__dropdown" onClick={toggleDropdown}>
+                                <h4>Friends</h4>
+                                {!isFriendsOpen && (<ArrowLeftIcon />)}
+                                {isFriendsOpen && (<ArrowDropDownIcon />)}
+                            </div>
+                            <div className="user-nav__friends">
+                            {isFriendsOpen && (
                                 friends.map((friend) => {
                                     return (
-                                        <p>{friend.friend_username}</p>
+                                        <Link className='user-nav__link' to={`/profile/${friend.friend_id}`}>
+                                            <p className="user-nav__friend">{friend.friend_username}</p>
+                                        </Link>
                                     )
-                                })
+                                }))
                             }
                             </div>
                     </div>

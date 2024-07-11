@@ -26,7 +26,7 @@ const Feed = () => {
         <main className="feed">
             <header className="feed-hero">
                 <h2 className="feed-hero__title">Welcome back to éCrit, <span className="feed-hero__title--username">internalgarden</span></h2>
-                <h3 className="feed-hero__tagline">Share your exhibition experiences and connect with others</h3>
+                <h3 className="feed-hero__tagline">From the French word for write, éCrit is a social internet hub for art critique</h3>
             </header>
             <section>
                 {
