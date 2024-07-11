@@ -46,8 +46,8 @@ const Profile = () => {
             <article className="profile__user-box">
                 <img className='profile__user-image' src={`${API_URL}/public/images/${user.avatar}`} alt={user.username}/>
                 <p className="profile__user-name">{user.name}</p>
-                <p className="profile__username">@{user.username}</p>
-                <p className="profile__username">Joined {dayjs(user.created_at).format('MMMM D, YYYY')}</p>
+                <p className="profile__username">{user.username}</p>
+                <p className="profile__userdate">Joined {dayjs(user.created_at).format('MMMM D, YYYY')}</p>
             </article>
             <div className="profile-right">
                 <article className="profile__info-box">

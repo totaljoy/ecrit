@@ -12,14 +12,21 @@
     &-hero__title {
         font-size: 2rem;
         padding-bottom: 1rem;
+
+        &--username {
+            font-size: 2rem;
+            font-weight: 400;
+        }
     }
 
     &-hero__tagline {
+        font-size: 1rem;
         color: red;
     }
 }
 
 .post {
+    position: relative;
     padding: 1rem;
     background-color: #f6f6f6;
     border: 1px solid rgb(203, 203, 203);
@@ -27,7 +34,7 @@
     align-items: center;
     margin: 1rem 0;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: .9rem;
     border-radius: 10px;
 
     &__link {
@@ -40,6 +47,10 @@
         height: 50px;
         align-self: flex-start;
 
+        &--single {
+            align-self: center;
+        }
+
         &-image {
             height: 40px;
             border-radius: 50%;
@@ -49,33 +60,43 @@
 
     &__info {
         padding: 0 .5rem;
+        font-size: .9rem;
         width: 100%;
         &-date {
+            position: absolute;
+            top: 2%;
+            right: 1%;
             width: 20%;
             text-align: right;
-            letter-spacing: -.05ch;
+            font-weight: 400;
             font-size: .75rem;
             font-family: 'Roboto Mono';
             color: rgb(131, 131, 131);
             align-self: flex-start;
+
+            &--single {
+                position: relative;
+            }
         }
 
         &-top {
+            padding-top: .5rem;
             display: flex;
             justify-content: space-between;
+            position: relative;
         }
 
         &--special {
             font-family: 'Roboto Mono';
-            font-weight: 600;
+            font-weight: 400;
             color: black;
-            letter-spacing: -.1ch;
-            font-size: 1rem;
+            font-size: .9rem;
         }
 
         &--italic {
             font-style: italic;
-            font-weight: 600;
+            font-weight: 400;
+            font-size: .9rem;
         }
     }
 
@@ -99,7 +120,7 @@
                 width: 11rem;
                 font-family: 'Roboto Mono';
                 font-size: .75rem;
-                color: #616161;
+                color: #000000;
                 text-align: left;
 
             }
@@ -115,8 +136,7 @@
 
             &__review {
                 padding: 0 1rem;
-                // font-family: 'Space Mono';
-                // font-size: .80rem;
+                font-size: .9rem;
                 height: 100%;
                 border-left: 1px solid rgb(0, 0, 0);
             }

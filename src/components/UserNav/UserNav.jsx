@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import './UserNav.scss'
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const UserNav = () => {
 
@@ -50,7 +51,7 @@ const UserNav = () => {
                         <img className="profile-widget__avatar" src={`${API_URL}/public/images/${user.avatar}`} alt='Avatar' />
                         <div className="profile-widget__info-user">
                             <p className="profile-widget-info__name">{user.name}</p>
-                            <p className="profile-widget-info__user">@{user.username}</p>
+                            <p className="profile-widget-info__user">{user.username}</p>
                         </div>
                     </div>
                     <div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import addIcon from '../../assets/icons/add.svg'
 import starIcon from '../../assets/icons/star.svg'
+import './SearchResults.scss'
 
 const SearchResults = () => {
 
@@ -18,15 +19,17 @@ const SearchResults = () => {
     }
 
     useEffect(() => {
-        getSearchResults()
-    }, [])
+        if (search) {
+            setSearchParams(search)
+            getSearchResults()
+    }}, [search])
 
     return (
-        <main className="search-result">
-            <h2 className="search-result__title">{`Search results for: ${search}`}</h2>
-            <section>
-                <h3>Exhibitions</h3>
-                <div>
+        <main className="search-results">
+            <h2 className="search-results__header">{`Search results for: ${search}`}</h2>
+            <section className="search-results__container">
+                <h3 className="search-result__header">Exhibitions</h3>
+                <div className="search-result">
                     {   
                         results.exhibitions && results.exhibitions.map((exhibition) => {
 
@@ -49,27 +52,27 @@ const SearchResults = () => {
                     }
                 </div>
             </section>
-            <section>
-                <h3>Users</h3>
+            <section className="search-results__container">
+                <h3 className="search-result__header">Users</h3>
+                <div className="search-result">
                 {   
-                        results.users && results.users.map((exhibition) => {
+                        results.users && results.users.map((user) => {
 
                             return (
-                                <article className="exhibition">
-                                <div className="exhibition__icons">
-                                    <img className='icon' src={addIcon} alt='Add Exhibition' onClick={() => handleClickOpen(exhibition)}/>
-                                </div>
-                                <Link className='exhibition__link' to={`/${exhibition.show_id}`} key={exhibition.show_id}>
-                                <img className='exhibition__image' src={`${API_URL}/public/images/${exhibition.avatar}`} />
-                                <div className="exhibition-info">
-                                    <h3 className="exhibition-info__title">{exhibition.name}</h3>
-                                    <p className="exhibition-info__place">{exhibition.username}</p>
-                                </div>
+                                <article className="user">
+                                <Link className='user__link exhibition__link' to={`/profile/${user.user_id}`} key={user.user_id}>
+                                    <img className='user__image' src={`${API_URL}/public/images/${user.avatar}`} />
+                                    <div className="user-info">
+                                        <h3 className="exhibition-info__title">{user.name}</h3>
+                                        <p className="exhibition-info__place">{user.username}</p>
+                                    </div>
+                                    <img className='user__icon' src={addIcon} alt='Add Exhibition' onClick={() => handleClickOpen(user)}/>
                                 </Link>
                             </article>
                             )
                         })
                     }
+                </div>
             </section>
         </main>
     )

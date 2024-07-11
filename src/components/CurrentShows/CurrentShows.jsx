@@ -66,7 +66,7 @@ const CurrentShows = () => {
         <main className="home">
             <header className="current-shows__hero">
                 <h1 className="current-shows__title">Exhibitions</h1>
-                <h3 className="current-shows__tagline">Explore New York's exhibitions, track the ones you've seen, plan to see the ones you haven't</h3>
+                <h3 className="current-shows__tagline">Explore, track visits, and makes plans to see New York's Latest Exhibitions</h3>
             </header>
             {currentExhibition && (
                                 <Dialog

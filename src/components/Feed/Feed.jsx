@@ -12,7 +12,7 @@ const Feed = () => {
 
     const getActivity = async() => {
         const response = await axios(`${API_URL}/reviews`)
-        const sortedData = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        const sortedData = response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
         setActivity(sortedData)
     }
 
@@ -25,7 +25,7 @@ const Feed = () => {
     return (
         <main className="feed">
             <header className="feed-hero">
-                <h2 className="feed-hero__title">Welcome back to éCrit, internalgarden</h2>
+                <h2 className="feed-hero__title">Welcome back to éCrit, <span className="feed-hero__title--username">internalgarden</span></h2>
                 <h3 className="feed-hero__tagline">Share your exhibition experiences and connect with others</h3>
             </header>
             <section>
@@ -35,11 +35,11 @@ const Feed = () => {
                             return (
                                 <Link to={`/${e.show_id}`} key={e.id} className="post__link">
                                 <article className="post">
-                                    <div className="post__user">
+                                    <div className="post__user--single">
                                         <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
                                     </div>
-                                    <p className="post__info"><span className="post__info--special">{e.username}</span> visited <span className="post__info--italic">{e.title}</span> at <span className="post_info--special">{e.location}</span></p>
-                                    <p className="post__info-date">{e.date && dayjs(e.date).fromNow()}</p>
+                                    <p className="post__info"><span className="post__info--special">{e.username}</span> visited <span className="post__info--italic">{e.title}</span> at <span className="post__info--special">{e.location}</span></p>
+                                    <p className="post__info-date post__info-date--single">{e.date && dayjs(e.date).fromNow()}</p>
                                 </article>
                                 </Link>
                             )
