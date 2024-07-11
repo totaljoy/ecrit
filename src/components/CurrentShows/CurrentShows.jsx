@@ -7,14 +7,18 @@ import starIcon from '../../assets/icons/star.svg'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import Slide from '@mui/material/Slide';
 import DatePickerMUI from '../DatePickerMUI/DatePickerMUI.jsx';
+import dayjs from 'dayjs';
 
 const CurrentShows = () => {
 
     const [shows, setShows] = useState([])
     const [open, setOpen] = useState(false)
     const [currentExhibition, setCurrentExhibition] = useState({});
+    const [visitDate, setVisitDate] = useState(dayjs());
+    const [reviews, setReviews] = useState([])    
+    let navigate = useNavigate()
+    
 
     const API_URL = import.meta.env.VITE_API_URL 
 
@@ -30,23 +34,47 @@ const CurrentShows = () => {
             console.log(err)
         }
     }   
+    const putNewReview = async (review) => {
+        try {
+            await axios.put(`${API_URL}/reviews/${review.id}`, { starred: !review.starred, seen: !review.seen })
+        } catch(err) {
+            console.log(err)
+        }
+    }   
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const newReview = {
-            user_id: 1,
+            user_id: 2,
             show_id: currentExhibition?.show_id,
             seen: true,
+            date: visitDate.format('YYYY-MM-DD HH:mm:ss'),
             review: event.target.review.value
         }
         postNewReview(newReview);
-        console.log(newReview)
         navigate('/:exhibitionId')
     }
 
-    const Transition = forwardRef(function Transition(props, ref) {
-        return <Slide direction="up" ref={ref} {...props} />;
-      });
+    const handleStarredClick = (exhibitionId, review) => {
+        const newStarred = {
+            user_id: 2,
+            show_id: exhibitionId,
+            seen: false,
+            starred: true,
+            date: dayjs().format('YYYY-MM-DD HH:mm:ss')
+        }
+        if (!review) {
+            postNewReview(newStarred)
+        } else {
+            putNewReview(review)
+        }
+        getUserReviews()
+    }
+
+    const getUserReviews = async() => {
+        const response = await axios(`${API_URL}/users/reviews/2`)
+        setReviews(response.data)
+        }
 
     const handleClose = () => {
         setCurrentExhibition(null);
@@ -60,7 +88,8 @@ const CurrentShows = () => {
 
     useEffect(() => {
         getCurrentShows()
-    }, [])
+        getUserReviews()
+    }, [reviews])
 
     return (
         <main className="home">
@@ -72,7 +101,6 @@ const CurrentShows = () => {
                                 <Dialog
                                     open={open}
                                     onClose={handleClose}
-                                    // TransitionComponent={Transition}
                                     className="dialog"
                                 >
                                     <form action="submit" onSubmit={handleSubmit}>
@@ -84,7 +112,8 @@ const CurrentShows = () => {
                                                 <label className="review-dialog__label">
                                                     Visit Date
                                                 </label>
-                                                <DatePickerMUI className='review-dialog__date' />
+                                                <DatePickerMUI className='review-dialog__date'  value={visitDate}
+                                                    onChange={(newValue) => setVisitDate(newValue)}    />
                                                 <label className="review-dialog__label review-dialog__label--bottom">Add Review</label>
                                                 <textarea type="text" name="review" className="review-dialog__input" />
                                             </DialogContent>
@@ -108,6 +137,7 @@ const CurrentShows = () => {
                             return exhibition.artists
                         }}
 
+                        const review = reviews.find((review) => (review.show_id === exhibition.show_id))
                         const artistsAsString = makeArtistsArrString(exhibition)
 
                         return (
@@ -115,7 +145,7 @@ const CurrentShows = () => {
 
                             <article className="exhibition">
                                 <div className="exhibition__icons">
-                                    <img className='icon' src={starIcon} alt="Add to List" />
+                                    <img className={`icon ${review?.starred ? 'icon__starred' : ''}`} src={starIcon} alt="Add to List" onClick={() => handleStarredClick(exhibition.show_id, review)}/>
                                     <img className='icon' src={addIcon} alt='Add Exhibition' onClick={() => handleClickOpen(exhibition)}/>
                                 </div>
                                 <Link className='exhibition__link' to={`/${exhibition.show_id}`} key={exhibition.show_id}>

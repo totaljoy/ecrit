@@ -36,7 +36,7 @@ const Profile = () => {
         getUser()
         getFriendsList()
         getUserReviews()
-    }, [])
+    }, [ userId ])
 
     const reviews = userReviews.filter(item => item.review !== null)
 

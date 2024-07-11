@@ -56,7 +56,6 @@ const SingleShow = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(visitDate.format('YYYY-MM-DD HH:mm:ss'))
         const newReview = {
             user_id: 1,
             show_id: exhibitionId,

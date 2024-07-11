@@ -9,12 +9,11 @@ const SearchResults = () => {
 
     const API_URL = import.meta.env.VITE_API_URL 
     const [searchParams, setSearchParams] = useSearchParams();
-    const [search, setSearch] = useState(searchParams.get('query') || '');
+    const search = searchParams.get('query') || ''
     const [results, setResults] = useState([])
 
     const getSearchResults = async () =>{
         const result = await axios(`${API_URL}/search/?search=${ search }`)
-        console.log(result.data)
         setResults(result.data)
     }
 

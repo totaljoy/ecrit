@@ -64,6 +64,10 @@
                     transition-duration: .5s;
                     transition-timing-function: ease-in-out;
                 }
+
+                &__starred {
+                    opacity: .5;
+                }
             }
 
             &__link {
