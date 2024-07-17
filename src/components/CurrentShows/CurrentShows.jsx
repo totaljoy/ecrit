@@ -52,7 +52,7 @@ const CurrentShows = () => {
             review: event.target.review.value
         }
         postNewReview(newReview);
-        navigate('/:exhibitionId')
+        navigate('/')
     }
 
     const handleStarredClick = (exhibitionId, review) => {

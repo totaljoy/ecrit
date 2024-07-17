@@ -65,13 +65,13 @@ const SingleShow = () => {
         }
         postNewReview(newReview);
         console.log(newReview)
-        navigate(`/:exhibitionId`)
+        navigate(`/`)
     }
 
     useEffect(() => {
         getSingleExhibition()
         getReviews()
-    }, [])
+    }, [ exhibitionId ])
 
     const makeArtistsArrString = (show) => {
         if (show.artists && show.artists.length > 1) {
@@ -128,7 +128,7 @@ const SingleShow = () => {
                     </div>
                 </div>
                 <p className="single-show__info-item--artists">{artistsAsString}</p>
-                <p className="single-show__info-item--artists">{show.description}</p>
+                {show.description && <p className="single-show__info-item--artists">{show.description}</p>}
             </article>
             <div className="single-show__buttons">
                 <img className='single-show__icon' src={starIcon} alt="Add to List" />
@@ -136,7 +136,7 @@ const SingleShow = () => {
             </div>
         </section>
         <section className="show-reviews">
-            <h1 className="show-reviews__header">Reviews</h1>
+            {reviews?.length > 0 && (<h1 className="show-reviews__header">Reviews</h1>)}
             {
                 reviews.map((review) => {
                     if (review.review) {

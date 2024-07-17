@@ -12,6 +12,8 @@ const UserNav = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [search, setSearch] = useState(searchParams.get('query') || '');
     const [isFriendsOpen, setIsFriendsOpen] = useState(false);
+    const [isStarredOpen, setIsStarredOpen] = useState(false);
+    const [userReviews, setUserReviews] = useState([])
     const navigate = useNavigate()
 
     const API_URL = import.meta.env.VITE_API_URL 
@@ -23,8 +25,15 @@ const UserNav = () => {
 
     const getFriendsList = async() => {
         const response = await axios(`${API_URL}/users/friends/2`)
-        console.log(response.data)
         setFriends(response.data)
+    }
+
+    const getStarredReviews = async() => {
+        const response = await axios(`${API_URL}/users/reviews/2`)
+
+        const starredReviews = response.data.filter((review) => (review.starred))
+        console.log(starredReviews)
+        setUserReviews(starredReviews)
     }
 
     const handleChange = (e) => {
@@ -38,15 +47,21 @@ const UserNav = () => {
         setSearch('')
     }
 
-    const toggleDropdown = () => {
+    const toggleFriendsDropdown = () => {
         setIsFriendsOpen(!isFriendsOpen);
       };
+    
+    const toggleStarredDropdown = () => {
+        setIsStarredOpen(!isStarredOpen);
+    }
 
     useEffect(() => {
         getUser()
+        getStarredReviews()
         getFriendsList()
     }, [])
-
+    
+    console.log(userReviews)
     return (
         <nav className="nav">
             <form onSubmit={handleSearch}>
@@ -61,7 +76,7 @@ const UserNav = () => {
                         </div>
                     </div>
                     <div className="user-nav__info">   
-                            <div className="user-nav__dropdown" onClick={toggleDropdown}>
+                            <div className="user-nav__dropdown" onClick={toggleFriendsDropdown}>
                                 <h4>Friends</h4>
                                 {!isFriendsOpen && (<ArrowLeftIcon />)}
                                 {isFriendsOpen && (<ArrowDropDownIcon />)}
@@ -72,6 +87,24 @@ const UserNav = () => {
                                     return (
                                         <Link className='user-nav__link' to={`/profile/${friend.friend_id}`}>
                                             <p className="user-nav__friend">{friend.friend_username}</p>
+                                        </Link>
+                                    )
+                                }))
+                            }
+                            </div>
+                    </div>
+                    <div className="user-nav__info">   
+                            <div className="user-nav__dropdown" onClick={toggleStarredDropdown}>
+                                <h4>Go See List</h4>
+                                {!isStarredOpen && (<ArrowLeftIcon />)}
+                                {isStarredOpen && (<ArrowDropDownIcon />)}
+                            </div>
+                            <div className="user-nav__friends">
+                            {isStarredOpen && (
+                               userReviews.map((review) => {
+                                    return (
+                                        <Link className='user-nav__link' to={`/${review.show_id}`}>
+                                            <p className="user-nav__friend">{review.title}</p>
                                         </Link>
                                     )
                                 }))

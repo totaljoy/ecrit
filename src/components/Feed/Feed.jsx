@@ -31,7 +31,7 @@ const Feed = () => {
             <section>
                 {
                     activity.map((e) => {
-                        if (!e.review) {
+                        if (!e.review && !e.starred) {
                             return (
                                 <Link to={`/${e.show_id}`} key={e.id} className="post__link">
                                 <article className="post">
@@ -39,6 +39,18 @@ const Feed = () => {
                                         <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
                                     </div>
                                     <p className="post__info"><span className="post__info--special">{e.username}</span> visited <span className="post__info--italic">{e.title}</span> at <span className="post__info--special">{e.location}</span></p>
+                                    <p className="post__info-date post__info-date--single">{e.date && dayjs(e.date).fromNow()}</p>
+                                </article>
+                                </Link>
+                            )
+                        } else if (!e.review && e.starred) {
+                            return (
+                                <Link to={`/${e.show_id}`} key={e.id} className="post__link">
+                                <article className="post">
+                                    <div className="post__user--single">
+                                        <img className="post__user-image" src={`${API_URL}/public/images/${e.avatar}`} alt={e.username} />
+                                    </div>
+                                    <p className="post__info"><span className="post__info--special">{e.username}</span> added <span className="post__info--italic">{e.title}</span> at <span className="post__info--special">{e.location}</span> to Go See List</p>
                                     <p className="post__info-date post__info-date--single">{e.date && dayjs(e.date).fromNow()}</p>
                                 </article>
                                 </Link>
