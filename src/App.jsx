@@ -7,22 +7,25 @@ import UserNav from './components/UserNav/UserNav.jsx'
 import FeedPage from './pages/FeedPage/FeedPage.jsx'
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx'
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage.jsx'
+import SignIn from './components/SignIn/SignIn.jsx'
 import './App.scss'
 
 function App() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
-      <Header />
+      {isLoggedIn && <Header />}
       <div className='page'>
       <Routes>
-        <Route path='/' element={<FeedPage />}/>
+        <Route path='/' element={isLoggedIn ? <FeedPage /> : <SignIn />}/>
         <Route path='/profile/:userId' element={<ProfilePage />} />
         <Route path='/explore' element={<HomePage />}/>
         <Route path='/:exhibitionId' element={<SingleShowPage />}/>
         <Route path='/search' element={<SearchResultsPage />}/>
       </Routes>
-      <UserNav />
+      {isLoggedIn && <UserNav />}
       </div>
     </BrowserRouter>
   )}
