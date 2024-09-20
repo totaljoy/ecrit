@@ -7,7 +7,8 @@ import UserNav from './components/UserNav/UserNav.jsx'
 import FeedPage from './pages/FeedPage/FeedPage.jsx'
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx'
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage.jsx'
-import SignIn from './components/SignIn/SignIn.jsx'
+import SignIn from './components/auth/SignIn/SignIn.jsx'
+import AuthDetails from './components/auth/AuthDetails.jsx'
 import './App.scss'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
+    <AuthDetails>
     <BrowserRouter>
       {isLoggedIn && <Header />}
       <div className='page'>
@@ -28,6 +30,7 @@ function App() {
       {isLoggedIn && <UserNav />}
       </div>
     </BrowserRouter>
+    </AuthDetails>
   )}
 
 export default App

@@ -1,7 +1,7 @@
-import logo from '../../assets/eCritLogo.png'
+import logo from '../../../assets/eCritLogo.png'
 import { useState } from 'react'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase.js'
+import { auth } from '../../../firebase'
 import './SignIn.scss'
 
 const SignIn = () => {
@@ -9,6 +9,7 @@ const SignIn = () => {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false)
     const [signInEmail, setSignInEmail] = useState('')
     const [signUpEmail, setSignUpEmail] = useState('')
+    const [signUpUsername, setSignUpUsername] = useState('')
     const [signInPW, setSignInPW] = useState('')
     const [signUpPW, setSignUpPW] = useState('')
     const [signUpConfirmPW, setSignUpConfirmPW] = useState('')
@@ -21,6 +22,18 @@ const SignIn = () => {
     const toggleSignUpDropdown = () => {
         setIsSignUpOpen(!isSignUpOpen)
         setIsLoginOpen(false)
+    }
+
+    const createServerUser = async () => {
+        try {
+            const newUser = {
+                username: signUpUsername,
+                email: signUpEmail
+            }
+            await axios.post(`${API_URL}/users`, newUser)
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const signIn = (e) => {
@@ -39,6 +52,7 @@ const SignIn = () => {
 
         if (signUpPW === signUpConfirmPW) {
             createUserWithEmailAndPassword(auth, signUpEmail, signUpPW)
+            createServerUser()
             .then((userCredential) => {
                 console.log(userCredential)
             })
@@ -84,6 +98,13 @@ const SignIn = () => {
                             className='login__input'
                             value={signUpEmail} 
                             onChange={(e) => setSignUpEmail(e.target.value)}
+                        />
+                        <label className='login__label' htmlFor="username">Username</label>
+                        <input 
+                            type="text" 
+                            value={signUpUsername} 
+                            className='login__input'
+                            onChange={(e) => setSignUpUsername(e.target.value)}
                         />
                         <label className='login__label' htmlFor="password">Password</label>
                         <input 
